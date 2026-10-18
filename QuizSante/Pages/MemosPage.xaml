@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:c="clr-namespace:QuizSante.Controls" xmlns:h="clr-namespace:QuizSante.Helpers" x:Class="QuizSante.Pages.MemosPage">
+    <Grid RowDefinitions="Auto,*,Auto,Auto">
+        <c:BrandHeader />
+
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Padding="18,14,18,20" Spacing="16">
+
+                <Grid ColumnDefinitions="*,Auto" ColumnSpacing="10">
+                    <Border BackgroundColor="White" StrokeThickness="0" StrokeShape="RoundRectangle 18" HeightRequest="54" Padding="16,0">
+                        <Border.Shadow><Shadow Brush="#0B1C30" Opacity="0.06" Radius="8" Offset="0,3" /></Border.Shadow>
+                        <Grid ColumnDefinitions="Auto,*" ColumnSpacing="10">
+                            <c:Ico Name="magnify" Size="24" TextColor="{StaticResource OnSurfaceVariant}" />
+                            <Entry Grid.Column="1" Placeholder="Rechercher un geste, symptôme, réf..." FontSize="15" VerticalOptions="Center" />
+                        </Grid>
+                    </Border>
+                    <Border Grid.Column="1" WidthRequest="54" HeightRequest="54" StrokeThickness="0" StrokeShape="RoundRectangle 18" BackgroundColor="{StaticResource SecondaryContainer}">
+                        <c:Ico Name="star-outline" Size="26" TextColor="{StaticResource Primary}" />
+                    </Border>
+                </Grid>
+
+                <ScrollView Orientation="Horizontal" HorizontalScrollBarVisibility="Never" Margin="-18,0">
+                    <HorizontalStackLayout Spacing="10" Padding="18,0">
+                        <Border StrokeThickness="0" StrokeShape="RoundRectangle 22" BackgroundColor="{StaticResource Primary}" Padding="18,11">
+                            <HorizontalStackLayout Spacing="8">
+                                <Label Text="Toutes" FontFamily="InterBold" FontSize="15" TextColor="White" VerticalOptions="Center" />
+                                <Border StrokeThickness="0" StrokeShape="RoundRectangle 10" BackgroundColor="#40FFFFFF" Padding="8,2">
+                                    <Label Text="8" FontFamily="InterBold" FontSize="12.5" TextColor="White" />
+                                </Border>
+                            </HorizontalStackLayout>
+                        </Border>
+                        <Border StrokeThickness="0" StrokeShape="RoundRectangle 22" BackgroundColor="{StaticResource SurfaceContainer}" Padding="16,11">
+                            <HorizontalStackLayout Spacing="8">
+                                <BoxView WidthRequest="9" HeightRequest="9" CornerRadius="5" Color="{StaticResource Error}" VerticalOptions="Center" />
+                                <Label Text="Urgences Vitales" FontFamily="InterSemi" FontSize="15" VerticalOptions="Center" />
+                            </HorizontalStackLayout>
+                        </Border>
+                        <Border StrokeThickness="0" StrokeShape="RoundRectangle 22" BackgroundColor="{StaticResource SurfaceContainer}" Padding="16,11">
+                            <HorizontalStackLayout Spacing="8">
+                                <c:Ico Name="bandage" Size="18" TextColor="{StaticResource OnSurface}" />
+                                <Label Text="Plaies &amp; Brûlures" FontFamily="InterSemi" FontSize="15" VerticalOptions="Center" />
+                            </HorizontalStackLayout>
+                        </Border>
+                    </HorizontalStackLayout>
+                </ScrollView>
+
+                <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="8" Margin="0,4,0,0">
+                    <BoxView WidthRequest="11" HeightRequest="11" CornerRadius="6" Color="{StaticResource Error}" VerticalOptions="Center" />
+                    <Label Grid.Column="1" Text="Urgences vitales prioritaires" FontFamily="InterBold" FontSize="19" VerticalOptions="Center" />
+                    <Border Grid.Column="2" Style="{StaticResource Chip}" BackgroundColor="{StaticResource ErrorContainer}" Padding="11,5">
+                        <Label Text="Priorité 1" FontFamily="InterBold" FontSize="13" TextColor="{StaticResource OnError}" />
+                    </Border>
+                </Grid>
+
+                <VerticalStackLayout Spacing="14" BindableLayout.ItemsSource="{Binding Urgent}">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <Border Style="{StaticResource Card}" Padding="0" StrokeShape="RoundRectangle 20" h:Nav.To="memo">
+                                <VerticalStackLayout Spacing="0">
+                                    <Grid ColumnDefinitions="Auto,*" ColumnSpacing="14" Padding="16,16,16,14">
+                                        <Border WidthRequest="64" HeightRequest="64" StrokeThickness="0" StrokeShape="RoundRectangle 18"
+                                                BackgroundColor="{Binding IconBg}" VerticalOptions="Start">
+                                            <c:Ico Name="{Binding Icon}" Size="32" TextColor="{Binding IconFg}" />
+                                        </Border>
+                                        <VerticalStackLayout Grid.Column="1" Spacing="4">
+                                            <Grid ColumnDefinitions="Auto,*">
+                                                <Border Style="{StaticResource Chip}" BackgroundColor="{StaticResource GreenContainer}" Padding="8,4">
+                                                    <HorizontalStackLayout Spacing="5">
+                                                        <c:Ico Name="check-circle-outline" Size="15" TextColor="{StaticResource Green}" />
+                                                        <Label Text="Hors-ligne" FontFamily="InterBold" FontSize="13" TextColor="{StaticResource Green}" />
+                                                    </HorizontalStackLayout>
+                                                </Border>
+                                                <HorizontalStackLayout Grid.Column="1" HorizontalOptions="End" Spacing="4" VerticalOptions="Center">
+                                                    <c:Ico Name="timer-outline" Size="16" TextColor="{StaticResource OnSurfaceVariant}" />
+                                                    <Label Text="{Binding Duration}" FontFamily="InterMedium" FontSize="13.5" TextColor="{StaticResource OnSurfaceVariant}" />
+                                                </HorizontalStackLayout>
+                                            </Grid>
+                                            <Label Text="{Binding Title}" FontFamily="InterBold" FontSize="18" />
+                                            <Label Text="{Binding Description}" FontSize="13.5" TextColor="{StaticResource OnSurfaceVariant}" LineBreakMode="TailTruncation" MaxLines="1" />
+                                        </VerticalStackLayout>
+                                    </Grid>
+                                    <Grid BackgroundColor="{StaticResource Surface}" ColumnDefinitions="*,Auto" Padding="16,10">
+                                        <HorizontalStackLayout Spacing="8" VerticalOptions="Center">
+                                            <Label Text="{Binding Footer}" FontFamily="InterBold" FontSize="13.5" TextColor="{Binding FooterColor}" />
+                                        </HorizontalStackLayout>
+                                        <Border Grid.Column="1" BackgroundColor="{Binding ButtonBg}" StrokeThickness="0" StrokeShape="RoundRectangle 12" Padding="16,11">
+                                            <HorizontalStackLayout Spacing="4">
+                                                <Label Text="{Binding ButtonText}" FontFamily="InterBold" FontSize="14.5" TextColor="{Binding ButtonFg}" />
+                                                <c:Ico Name="chevron-right" Size="18" TextColor="{Binding ButtonFg}" />
+                                            </HorizontalStackLayout>
+                                        </Border>
+                                    </Grid>
+                                </VerticalStackLayout>
+                            </Border>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </VerticalStackLayout>
+
+                <Grid ColumnDefinitions="*,Auto" Margin="0,8,0,0">
+                    <Label Text="Toutes les fiches réflexes" FontFamily="InterBold" FontSize="19" />
+                    <Label Grid.Column="1" Text="5 fiches pratiques" FontFamily="InterMedium" FontSize="13.5" TextColor="{StaticResource OnSurfaceVariant}" VerticalOptions="Center" />
+                </Grid>
+
+                <VerticalStackLayout Spacing="12" BindableLayout.ItemsSource="{Binding Others}">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <Border Style="{StaticResource Card}" Padding="14" StrokeShape="RoundRectangle 18" h:Nav.To="memo">
+                                <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="14">
+                                    <Border WidthRequest="64" HeightRequest="64" StrokeThickness="0" StrokeShape="RoundRectangle 18" BackgroundColor="{StaticResource SecondaryContainer}">
+                                        <c:Ico Name="{Binding Icon}" Size="30" TextColor="{StaticResource PrimaryDark}" />
+                                    </Border>
+                                    <VerticalStackLayout Grid.Column="1" Spacing="3" VerticalOptions="Center">
+                                        <HorizontalStackLayout Spacing="6">
+                                            <c:Ico Name="check-circle-outline" Size="15" TextColor="{StaticResource Green}" />
+                                            <Label Text="Vérifié" FontFamily="InterBold" FontSize="13" TextColor="{StaticResource Green}" />
+                                            <Label Text="{Binding Tag}" FontFamily="InterSemi" FontSize="12.5" TextColor="{StaticResource OnSurfaceVariant}" LineBreakMode="TailTruncation" MaxLines="1" />
+                                            <Label Text="{Binding Duration}" FontFamily="InterSemi" FontSize="12.5" TextColor="{StaticResource OnSurfaceVariant}" LineBreakMode="NoWrap" />
+                                        </HorizontalStackLayout>
+                                        <Label Text="{Binding Title}" FontFamily="InterBold" FontSize="17" LineBreakMode="TailTruncation" MaxLines="1" />
+                                        <Label Text="{Binding Description}" FontSize="13.5" TextColor="{StaticResource OnSurfaceVariant}" LineBreakMode="TailTruncation" MaxLines="1" />
+                                    </VerticalStackLayout>
+                                    <Border Grid.Column="2" WidthRequest="44" HeightRequest="44" StrokeThickness="0" StrokeShape="RoundRectangle 22" BackgroundColor="{StaticResource SecondaryContainer}" VerticalOptions="Center">
+                                        <c:Ico Name="chevron-right" Size="22" TextColor="{StaticResource PrimaryDark}" />
+                                    </Border>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- Bouton Mode Urgence Grand Écran -->
+        <Border Grid.Row="2" BackgroundColor="{StaticResource Error}" StrokeThickness="0" StrokeShape="RoundRectangle 22" Padding="14,13" Margin="18,6,18,12" h:Nav.To="memo">
+            <Border.Shadow><Shadow Brush="#BA1A1A" Opacity="0.30" Radius="14" Offset="0,6" /></Border.Shadow>
+            <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="12">
+                <Border WidthRequest="44" HeightRequest="44" StrokeThickness="0" StrokeShape="RoundRectangle 22" BackgroundColor="#33FFFFFF">
+                    <c:Ico Name="fullscreen" Size="24" TextColor="White" />
+                </Border>
+                <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
+                    <Label Text="Mode Urgence Grand Écran" FontFamily="InterBold" FontSize="17" TextColor="White" />
+                    <Label Text="Lecture pas-à-pas très gros caractères" FontFamily="InterSemi" FontSize="12.5" TextColor="#FFE0DC" />
+                </VerticalStackLayout>
+                <c:Ico Grid.Column="2" Name="play-circle-outline" Size="32" TextColor="White" />
+            </Grid>
+        </Border>
+
+        <c:BottomNav Grid.Row="3" Active="memos" />
+    </Grid>
+</ContentPage>

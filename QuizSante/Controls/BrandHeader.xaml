@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:c="clr-namespace:QuizSante.Controls"
+             x:Class="QuizSante.Controls.BrandHeader">
+    <Border BackgroundColor="{StaticResource Surface}" StrokeThickness="0" Padding="22,12">
+        <Border.Shadow>
+            <Shadow Brush="#0B1C30" Opacity="0.06" Radius="10" Offset="0,3" />
+        </Border.Shadow>
+        <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="12">
+            <Border WidthRequest="50" HeightRequest="50" StrokeThickness="0" StrokeShape="RoundRectangle 14"
+                    BackgroundColor="{StaticResource Primary}">
+                <c:Ico Name="medical-bag" Size="28" TextColor="White" />
+            </Border>
+            <VerticalStackLayout Grid.Column="1" VerticalOptions="Center" Spacing="1">
+                <Label Text="QuizSanté" FontFamily="InterBold" FontSize="23" TextColor="{StaticResource Primary}" />
+                <HorizontalStackLayout Spacing="6">
+                    <BoxView WidthRequest="8" HeightRequest="8" CornerRadius="4" Color="#4ADE80" VerticalOptions="Center" />
+                    <Label Text="Synchro hors-ligne" FontFamily="InterSemi" FontSize="12.5" TextColor="{StaticResource OnSurfaceVariant}" />
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+            <Grid Grid.Column="2" VerticalOptions="Center" Margin="0,0,6,0">
+                <c:Ico Name="bell-outline" Size="28" TextColor="{StaticResource OnSurface}" />
+                <BoxView WidthRequest="11" HeightRequest="11" CornerRadius="6" Color="#EF4444"
+                         HorizontalOptions="End" VerticalOptions="Start" Margin="0,-2,-2,0" />
+            </Grid>
+        </Grid>
+    </Border>
+</ContentView>

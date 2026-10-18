@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:c="clr-namespace:QuizSante.Controls" xmlns:h="clr-namespace:QuizSante.Helpers" x:Class="QuizSante.Pages.QuizQuestionPage">
+    <Grid RowDefinitions="Auto,*,Auto">
+        <c:SessionHeader Title="Session Quiz" Initials="DR" BackRoute="catalog" />
+
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Padding="16,12,16,16" Spacing="16">
+
+                <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="14">
+                    <Border WidthRequest="46" HeightRequest="46" StrokeThickness="0" StrokeShape="RoundRectangle 23"
+                            BackgroundColor="{StaticResource SecondaryContainer}" h:Nav.To="catalog">
+                        <c:Ico Name="close" Size="24" TextColor="{StaticResource OnSurface}" />
+                    </Border>
+                    <VerticalStackLayout Grid.Column="1" Spacing="6" VerticalOptions="Center">
+                        <Label Text="Question 3 sur 8" FontFamily="InterBold" FontSize="14" TextColor="{StaticResource OnSurfaceVariant}" HorizontalTextAlignment="Center" />
+                        <c:Bar Progress="0.375" FillColor="{StaticResource PrimaryDark}" TrackColor="{StaticResource TrackBlue}" HeightRequest="9" />
+                    </VerticalStackLayout>
+                    <Border Grid.Column="2" Style="{StaticResource Chip}" BackgroundColor="{StaticResource SurfaceContainer}" VerticalOptions="Center" Padding="11,7">
+                        <HorizontalStackLayout Spacing="5">
+                            <c:Ico Name="lightning-bolt" Size="16" TextColor="{StaticResource Indigo}" />
+                            <Label Text="300 pts" FontFamily="InterBold" FontSize="14" />
+                        </HorizontalStackLayout>
+                    </Border>
+                </Grid>
+
+                <Border Style="{StaticResource Chip}" BackgroundColor="{StaticResource PrimaryContainer}" Padding="11,7">
+                    <HorizontalStackLayout Spacing="7">
+                        <c:Ico Name="heart-pulse" Size="18" TextColor="{StaticResource PrimaryDark}" />
+                        <Label Text="PREMIERS SECOURS • ARRÊT CARDIAQUE" FontFamily="InterBold" FontSize="12.5" TextColor="{StaticResource PrimaryDark}" />
+                    </HorizontalStackLayout>
+                </Border>
+
+                <Label Text="Une personne s'effondre et ne respire plus. Que devez-vous faire en premier ?" FontFamily="InterXBold" FontSize="24" />
+
+                <Border Style="{StaticResource Card}" Padding="16" StrokeShape="RoundRectangle 20">
+                    <Grid ColumnDefinitions="*,Auto" ColumnSpacing="12">
+                        <VerticalStackLayout Spacing="6" VerticalOptions="Center">
+                            <HorizontalStackLayout Spacing="6">
+                                <c:Ico Name="alarm-light-outline" Size="17" TextColor="{StaticResource Error}" />
+                                <Label Text="URGENCE VITALE" FontFamily="InterBold" FontSize="13" TextColor="{StaticResource Error}" />
+                            </HorizontalStackLayout>
+                            <Label Text="Chaque seconde compte : reconnaissez l'inconscience et l'absence de souffle normal." FontSize="13.5" TextColor="{StaticResource OnSurfaceVariant}" />
+                        </VerticalStackLayout>
+                        <Grid Grid.Column="1" WidthRequest="96" HeightRequest="96">
+                            <Border StrokeThickness="0" StrokeShape="RoundRectangle 22" BackgroundColor="{StaticResource SurfaceContainer}" WidthRequest="88" HeightRequest="88" HorizontalOptions="Start" VerticalOptions="End" />
+                            <c:Ico Name="human-handsup" Size="46" TextColor="{StaticResource PrimaryDark}" HorizontalOptions="Start" Margin="21,0,0,2" VerticalOptions="Center" />
+                            <Border WidthRequest="26" HeightRequest="26" StrokeThickness="0" StrokeShape="RoundRectangle 13" BackgroundColor="{StaticResource Indigo}" HorizontalOptions="End" VerticalOptions="Start">
+                                <Label Text="!" FontFamily="InterBold" FontSize="14" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" />
+                            </Border>
+                        </Grid>
+                    </Grid>
+                </Border>
+
+                <VerticalStackLayout x:Name="OptionsHost" Spacing="12" Margin="0,4,0,0" />
+
+                <HorizontalStackLayout HorizontalOptions="Center" Spacing="6">
+                    <c:Ico Name="clock-outline" Size="15" TextColor="{StaticResource Outline}" />
+                    <Label Text="Pas de limite de temps • Prenez votre temps" FontFamily="InterBold" FontSize="12.5" TextColor="{StaticResource Outline}" />
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <VerticalStackLayout Grid.Row="2" Padding="16,8,16,12" Spacing="8" BackgroundColor="{StaticResource Surface}">
+            <Border BackgroundColor="{StaticResource PrimaryDark}" StrokeThickness="0" StrokeShape="RoundRectangle 18" HeightRequest="56" h:Nav.To="answer">
+                <Border.Shadow><Shadow Brush="#380F81" Opacity="0.30" Radius="14" Offset="0,6" /></Border.Shadow>
+                <HorizontalStackLayout Spacing="8" HorizontalOptions="Center" VerticalOptions="Center">
+                    <Label Text="Valider ma réponse" FontFamily="InterBold" FontSize="17" TextColor="White" />
+                    <c:Ico Name="arrow-right" Size="20" TextColor="White" />
+                </HorizontalStackLayout>
+            </Border>
+            <HorizontalStackLayout HorizontalOptions="Center" Spacing="6">
+                <c:Ico Name="shield-check" Size="14" TextColor="{StaticResource Green}" />
+                <Label Text="Recommandations officielles ERC &amp; Croix-Rouge" FontSize="12.5" TextColor="{StaticResource OnSurfaceVariant}" />
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>

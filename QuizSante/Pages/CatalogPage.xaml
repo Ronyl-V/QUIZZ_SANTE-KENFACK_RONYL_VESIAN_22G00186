@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:c="clr-namespace:QuizSante.Controls" xmlns:h="clr-namespace:QuizSante.Helpers" x:Class="QuizSante.Pages.CatalogPage">
+    <Grid RowDefinitions="Auto,*,Auto">
+        <c:BrandHeader />
+
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Padding="18,14,18,24" Spacing="16">
+
+                <!-- Recherche -->
+                <Border BackgroundColor="{StaticResource SurfaceContainer}" StrokeThickness="0" StrokeShape="RoundRectangle 18" HeightRequest="54" Padding="16,0">
+                    <Border.Shadow><Shadow Brush="#0B1C30" Opacity="0.05" Radius="8" Offset="0,3" /></Border.Shadow>
+                    <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="12">
+                        <c:Ico Name="magnify" Size="24" TextColor="{StaticResource OnSurfaceVariant}" />
+                        <Entry Grid.Column="1" Placeholder="Rechercher un thème, geste d'urgence..." FontSize="15.5" VerticalOptions="Center" />
+                        <c:Ico Grid.Column="2" Name="tune-variant" Size="24" TextColor="{StaticResource OnSurfaceVariant}" />
+                    </Grid>
+                </Border>
+
+                <!-- Filtres -->
+                <ScrollView Orientation="Horizontal" HorizontalScrollBarVisibility="Never" Margin="-18,0">
+                    <HorizontalStackLayout x:Name="FilterRow" Spacing="10" Padding="18,0" />
+                </ScrollView>
+
+                <!-- Bandeau hors-ligne -->
+                <Border BackgroundColor="{StaticResource SecondaryContainer}" StrokeThickness="0" StrokeShape="RoundRectangle 18" Padding="14">
+                    <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="14">
+                        <Border WidthRequest="46" HeightRequest="46" StrokeThickness="0" StrokeShape="RoundRectangle 13" BackgroundColor="{StaticResource Green}">
+                            <c:Ico Name="cloud-check-outline" Size="26" TextColor="White" />
+                        </Border>
+                        <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
+                            <Label Text="12 thèmes prêts hors-ligne" FontFamily="InterBold" FontSize="14.5" />
+                            <Label Text="48 Mo disponibles • Synchro active" FontSize="13.5" TextColor="{StaticResource OnSurfaceVariant}" />
+                        </VerticalStackLayout>
+                        <Border Grid.Column="2" Style="{StaticResource Chip}" BackgroundColor="#C4F2D0" VerticalOptions="Center" Padding="11,6">
+                            <Label Text="À jour" FontFamily="InterBold" FontSize="13" TextColor="{StaticResource Green}" />
+                        </Border>
+                    </Grid>
+                </Border>
+
+                <!-- Grille de thèmes (2 colonnes) -->
+                <FlexLayout Wrap="Wrap" JustifyContent="SpaceBetween" AlignItems="Start" BindableLayout.ItemsSource="{Binding Items}">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <Border Style="{StaticResource Card}" FlexLayout.Basis="48.5%" Padding="16" Margin="0,0,0,14" StrokeShape="RoundRectangle 20">
+                                <VerticalStackLayout Spacing="10">
+                                    <Grid ColumnDefinitions="*,Auto">
+                                        <Border Style="{StaticResource Chip}" BackgroundColor="{Binding TagBg}" Padding="9,4">
+                                            <Label Text="{Binding Tag}" FontFamily="InterBold" FontSize="12.5" TextColor="{Binding TagFg}" LineBreakMode="NoWrap" />
+                                        </Border>
+                                        <c:Ico Grid.Column="1" Name="{Binding StatusIcon}" Size="22" TextColor="{Binding StatusColor}" />
+                                    </Grid>
+                                    <Border WidthRequest="48" HeightRequest="48" StrokeThickness="0" StrokeShape="RoundRectangle 13"
+                                            BackgroundColor="{Binding IconBg}" HorizontalOptions="Start">
+                                        <c:Ico Name="{Binding Icon}" Size="26" TextColor="{Binding IconFg}" />
+                                    </Border>
+                                    <Label Text="{Binding Title}" FontFamily="InterBold" FontSize="18" MinimumHeightRequest="52" />
+                                    <Label Text="{Binding Meta}" FontSize="13.5" TextColor="{StaticResource OnSurfaceVariant}" />
+                                    <c:Bar Progress="{Binding Progress}" FillColor="{StaticResource Primary}" TrackColor="{StaticResource TrackBlue}" HeightRequest="7" Margin="0,2" />
+                                    <Border BackgroundColor="{Binding ButtonBg}" StrokeThickness="0" StrokeShape="RoundRectangle 13" HeightRequest="46" h:Nav.To="quiz">
+                                        <HorizontalStackLayout Spacing="6" HorizontalOptions="Center" VerticalOptions="Center">
+                                            <Label Text="{Binding ButtonText}" FontFamily="InterBold" FontSize="15" TextColor="{Binding ButtonFg}" />
+                                            <c:Ico Name="{Binding ButtonIcon}" Size="17" TextColor="{Binding ButtonFg}" />
+                                        </HorizontalStackLayout>
+                                    </Border>
+                                </VerticalStackLayout>
+                            </Border>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </FlexLayout>
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <c:BottomNav Grid.Row="2" Active="catalog" />
+    </Grid>
+</ContentPage>

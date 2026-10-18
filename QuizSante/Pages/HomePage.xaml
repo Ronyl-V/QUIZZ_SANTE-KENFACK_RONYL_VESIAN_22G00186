@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:c="clr-namespace:QuizSante.Controls" xmlns:h="clr-namespace:QuizSante.Helpers" x:Class="QuizSante.Pages.HomePage">
+    <Grid RowDefinitions="Auto,*,Auto">
+
+        <!-- En-tête accueil -->
+        <Border BackgroundColor="{StaticResource Surface}" StrokeThickness="0" Padding="22,12">
+            <Border.Shadow><Shadow Brush="#0B1C30" Opacity="0.06" Radius="10" Offset="0,3" /></Border.Shadow>
+            <Grid ColumnDefinitions="Auto,*,Auto,Auto" ColumnSpacing="14">
+                <Image Source="logo.png" WidthRequest="50" HeightRequest="40" Aspect="AspectFit" VerticalOptions="Center" />
+                <VerticalStackLayout Grid.Column="1" VerticalOptions="Center" Spacing="0">
+                    <Label Text="QUIZSANTÉ" FontFamily="InterMedium" FontSize="18" TextColor="{StaticResource PrimaryDark}" CharacterSpacing="2" />
+                    <Label Text="Accueil" FontFamily="InterMedium" FontSize="17" />
+                </VerticalStackLayout>
+                <c:Ico Grid.Column="2" Name="bell-outline" Size="27" TextColor="{StaticResource OnSurface}" />
+                <Border Grid.Column="3" WidthRequest="44" HeightRequest="44" StrokeThickness="0" StrokeShape="RoundRectangle 22" BackgroundColor="{StaticResource PrimaryContainer}">
+                    <Label Text="T" FontFamily="InterBold" FontSize="17" TextColor="{StaticResource OnPrimaryContainer}" HorizontalOptions="Center" VerticalOptions="Center" />
+                </Border>
+            </Grid>
+        </Border>
+
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Padding="18,12,18,24" Spacing="22">
+
+                <!-- Bienvenue -->
+                <Border Style="{StaticResource Card}" Padding="20">
+                    <VerticalStackLayout Spacing="6">
+                        <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="14">
+                            <Image Source="logo.png" WidthRequest="64" HeightRequest="48" Aspect="AspectFit" />
+                            <Border Grid.Column="1" Style="{StaticResource Chip}" BackgroundColor="{StaticResource SurfaceContainer}" VerticalOptions="Center" Padding="12,8">
+                                <HorizontalStackLayout Spacing="7">
+                                    <BoxView WidthRequest="8" HeightRequest="8" CornerRadius="4" Color="#4ADE80" VerticalOptions="Center" />
+                                    <Label Text="Synchronisé hors-ligne" FontFamily="InterMedium" FontSize="14" TextColor="{StaticResource OnSurfaceVariant}" />
+                                </HorizontalStackLayout>
+                            </Border>
+                            <c:Ico Grid.Column="2" Name="check-decagram" Size="26" TextColor="{StaticResource PrimaryDark}" VerticalOptions="Center" />
+                        </Grid>
+                        <Label FontFamily="InterXBold" FontSize="24" Margin="0,10,0,0">
+                            <Label.FormattedText><FormattedString>
+                                <Span Text="Bonjour Thomas " />
+                                <Span Text="👋" />
+                            </FormattedString></Label.FormattedText>
+                        </Label>
+                        <Label Text="Prêt à apprendre un geste qui sauve aujourd'hui ?" FontSize="16" TextColor="{StaticResource OnSurfaceVariant}" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Quiz du jour -->
+                <Border Background="{StaticResource QuizDayGradient}" StrokeThickness="0" StrokeShape="RoundRectangle 22" Padding="22">
+                    <Border.Shadow><Shadow Brush="#380F81" Opacity="0.25" Radius="16" Offset="0,8" /></Border.Shadow>
+                    <VerticalStackLayout Spacing="14">
+                        <Grid ColumnDefinitions="Auto,*,Auto">
+                            <Border Style="{StaticResource Chip}" BackgroundColor="#33FFFFFF" Padding="12,8">
+                                <HorizontalStackLayout Spacing="7">
+                                    <c:Ico Name="lightning-bolt" Size="17" TextColor="White" />
+                                    <Label Text="QUIZ DU JOUR" FontFamily="InterMedium" FontSize="15" TextColor="White" CharacterSpacing="1.2" />
+                                </HorizontalStackLayout>
+                            </Border>
+                            <Border Grid.Column="2" Style="{StaticResource Chip}" BackgroundColor="#40180050" Padding="12,8">
+                                <HorizontalStackLayout Spacing="6">
+                                    <c:Ico Name="timer-outline" Size="17" TextColor="White" />
+                                    <Label Text="2 min" FontFamily="InterMedium" FontSize="16" TextColor="White" />
+                                </HorizontalStackLayout>
+                            </Border>
+                        </Grid>
+                        <HorizontalStackLayout Spacing="10">
+                            <Border Style="{StaticResource Chip}" BackgroundColor="{StaticResource Mint}" Padding="12,5">
+                                <Label Text="Débutant" FontFamily="InterMedium" FontSize="15" TextColor="{StaticResource OnMint}" />
+                            </Border>
+                            <Label Text="4 questions vitales" FontSize="15.5" TextColor="#E4D9FF" VerticalOptions="Center" />
+                        </HorizontalStackLayout>
+                        <Label Text="Arrêt cardiaque : les premières secondes" FontFamily="InterBold" FontSize="21" TextColor="White" />
+                        <Label Text="Reconnaître l'urgence, alerter le 15/112 et lancer le massage cardiaque sans hésiter." FontSize="14" TextColor="#E4D9FF" />
+                        <Border BackgroundColor="White" StrokeThickness="0" StrokeShape="RoundRectangle 16" HeightRequest="52" Margin="0,4,0,0" h:Nav.To="quiz">
+                            <HorizontalStackLayout Spacing="8" HorizontalOptions="Center" VerticalOptions="Center">
+                                <Label Text="Commencer le quiz" FontFamily="InterMedium" FontSize="17" TextColor="{StaticResource PrimaryDark}" />
+                                <c:Ico Name="play-outline" Size="18" TextColor="{StaticResource PrimaryDark}" />
+                            </HorizontalStackLayout>
+                        </Border>
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Série -->
+                <Border Style="{StaticResource Card}" Padding="18">
+                    <VerticalStackLayout Spacing="16">
+                        <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="12">
+                            <Border WidthRequest="48" HeightRequest="48" StrokeThickness="0" StrokeShape="RoundRectangle 24" BackgroundColor="{StaticResource ErrorContainer}">
+                                <c:Ico Name="fire" Size="26" TextColor="{StaticResource Error}" />
+                            </Border>
+                            <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
+                                <Label Text="5 jours consécutifs" FontFamily="InterBold" FontSize="17" />
+                                <Label Text="Plus que 2 jours pour réussir le palier hebdo !" FontSize="13.5" TextColor="{StaticResource OnSurfaceVariant}" />
+                            </VerticalStackLayout>
+                            <Border Grid.Column="2" Style="{StaticResource Chip}" BackgroundColor="{StaticResource PrimaryContainer}" Padding="14,10" VerticalOptions="Center">
+                                <Label Text="+120 XP" FontFamily="InterBold" FontSize="17" TextColor="{StaticResource OnPrimaryContainer}" />
+                            </Border>
+                        </Grid>
+                        <Grid ColumnDefinitions="*,*,*,*,*,*,*" RowDefinitions="Auto,Auto" RowSpacing="8" ColumnSpacing="6">
+                            <Label Text="L" HorizontalTextAlignment="Center" FontSize="14" TextColor="{StaticResource OnSurfaceVariant}" />
+                            <Label Grid.Column="1" Text="M" HorizontalTextAlignment="Center" FontSize="14" TextColor="{StaticResource OnSurfaceVariant}" />
+                            <Label Grid.Column="2" Text="M" HorizontalTextAlignment="Center" FontSize="14" TextColor="{StaticResource OnSurfaceVariant}" />
+                            <Label Grid.Column="3" Text="J" HorizontalTextAlignment="Center" FontSize="14" TextColor="{StaticResource OnSurfaceVariant}" />
+                            <Label Grid.Column="4" Text="V" HorizontalTextAlignment="Center" FontSize="14" TextColor="{StaticResource OnSurfaceVariant}" />
+                            <Label Grid.Column="5" Text="S" HorizontalTextAlignment="Center" FontFamily="InterBold" FontSize="14" TextColor="{StaticResource PrimaryDark}" />
+                            <Label Grid.Column="6" Text="D" HorizontalTextAlignment="Center" FontSize="14" TextColor="{StaticResource OnSurfaceVariant}" />
+
+                            <Border Grid.Row="1" HeightRequest="42" WidthRequest="42" StrokeThickness="0" StrokeShape="RoundRectangle 21" BackgroundColor="{StaticResource Mint}"><c:Ico Name="check" Size="19" TextColor="{StaticResource OnMint}" /></Border>
+                            <Border Grid.Row="1" Grid.Column="1" HeightRequest="42" WidthRequest="42" StrokeThickness="0" StrokeShape="RoundRectangle 21" BackgroundColor="{StaticResource Mint}"><c:Ico Name="check" Size="19" TextColor="{StaticResource OnMint}" /></Border>
+                            <Border Grid.Row="1" Grid.Column="2" HeightRequest="42" WidthRequest="42" StrokeThickness="0" StrokeShape="RoundRectangle 21" BackgroundColor="{StaticResource Mint}"><c:Ico Name="check" Size="19" TextColor="{StaticResource OnMint}" /></Border>
+                            <Border Grid.Row="1" Grid.Column="3" HeightRequest="42" WidthRequest="42" StrokeThickness="0" StrokeShape="RoundRectangle 21" BackgroundColor="{StaticResource Mint}"><c:Ico Name="check" Size="19" TextColor="{StaticResource OnMint}" /></Border>
+                            <Border Grid.Row="1" Grid.Column="4" HeightRequest="42" WidthRequest="42" StrokeThickness="0" StrokeShape="RoundRectangle 21" BackgroundColor="{StaticResource Mint}"><c:Ico Name="check" Size="19" TextColor="{StaticResource OnMint}" /></Border>
+                            <Border Grid.Row="1" Grid.Column="5" HeightRequest="42" WidthRequest="42" StrokeThickness="0" StrokeShape="RoundRectangle 21" BackgroundColor="{StaticResource SecondaryContainer}"><c:Ico Name="timer-sand" Size="19" TextColor="{StaticResource OnSurfaceVariant}" /></Border>
+                            <Border Grid.Row="1" Grid.Column="6" HeightRequest="42" WidthRequest="42" StrokeThickness="0" StrokeShape="RoundRectangle 21" BackgroundColor="{StaticResource SurfaceContainer}"><c:Ico Name="lock-outline" Size="19" TextColor="{StaticResource Outline}" /></Border>
+                        </Grid>
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Continuer l'apprentissage -->
+                <VerticalStackLayout Spacing="10">
+                    <Grid ColumnDefinitions="*,Auto">
+                        <Label Text="Continuer l'apprentissage" Style="{StaticResource SectionTitle}" FontSize="18" />
+                        <Label Grid.Column="1" Text="Tous les cours" FontFamily="InterBold" FontSize="13.5" TextColor="{StaticResource PrimaryDark}" VerticalOptions="Center" h:Nav.To="catalog" />
+                    </Grid>
+                    <Border Style="{StaticResource Card}" Padding="18">
+                        <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="16">
+                            <Grid WidthRequest="64" HeightRequest="64" VerticalOptions="Center">
+                                <c:RingView Progress="0.65" Thickness="7" ArcColor="{StaticResource Primary}" TrackColor="{StaticResource SurfaceContainer}" />
+                                <Label Text="65%" FontFamily="InterBold" FontSize="13" HorizontalOptions="Center" VerticalOptions="Center" />
+                            </Grid>
+                            <VerticalStackLayout Grid.Column="1" Spacing="3" VerticalOptions="Center">
+                                <Label Text="MODULE GESTES D'URGENCE" FontFamily="InterMedium" FontSize="13.5" TextColor="{StaticResource OnSurfaceVariant}" CharacterSpacing="0.8" />
+                                <Label Text="Étouffement &amp; Heimlich" FontFamily="InterBold" FontSize="15" />
+                                <HorizontalStackLayout Spacing="6">
+                                    <c:Ico Name="check-circle-outline" Size="16" TextColor="{StaticResource OnSurfaceVariant}" VerticalOptions="Start" />
+                                    <Label Text="3 sur 5 quiz terminés" FontSize="14" TextColor="{StaticResource OnSurfaceVariant}" />
+                                </HorizontalStackLayout>
+                            </VerticalStackLayout>
+                            <Border Grid.Column="2" WidthRequest="48" HeightRequest="48" StrokeThickness="0" StrokeShape="RoundRectangle 14"
+                                    BackgroundColor="{StaticResource PrimaryContainer}" VerticalOptions="Center" h:Nav.To="quiz">
+                                <c:Ico Name="play-outline" Size="22" TextColor="{StaticResource PrimaryDark}" />
+                            </Border>
+                        </Grid>
+                    </Border>
+                </VerticalStackLayout>
+
+                <!-- Thèmes populaires -->
+                <VerticalStackLayout Spacing="10">
+                    <Grid ColumnDefinitions="*,Auto">
+                        <Label Text="Thèmes populaires" Style="{StaticResource SectionTitle}" FontSize="18" />
+                        <Label Grid.Column="1" Text="Faites défiler" FontSize="14.5" TextColor="{StaticResource OnSurfaceVariant}" VerticalOptions="Center" />
+                    </Grid>
+                    <ScrollView Orientation="Horizontal" HorizontalScrollBarVisibility="Never" Margin="-18,0">
+                        <HorizontalStackLayout Spacing="14" Padding="18,4,18,10" x:Name="ThemesRow" BindableLayout.ItemsSource="{Binding Themes}">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Style="{StaticResource Card}" WidthRequest="262" Padding="18" h:Nav.To="catalog">
+                                        <VerticalStackLayout Spacing="10">
+                                            <Grid ColumnDefinitions="Auto,*">
+                                                <Border WidthRequest="46" HeightRequest="46" StrokeThickness="0" StrokeShape="RoundRectangle 13" BackgroundColor="{StaticResource SecondaryContainer}">
+                                                    <c:Ico Name="{Binding Icon}" Size="26" TextColor="{StaticResource PrimaryDark}" />
+                                                </Border>
+                                                <Border Grid.Column="1" Style="{StaticResource Chip}" BackgroundColor="{StaticResource SecondaryContainer}" HorizontalOptions="End" Padding="12,7">
+                                                    <Label Text="{Binding Duration}" FontFamily="InterMedium" FontSize="14.5" TextColor="{StaticResource OnPrimaryContainer}" />
+                                                </Border>
+                                            </Grid>
+                                            <Label Text="{Binding Title}" FontFamily="InterBold" FontSize="19" />
+                                            <Label Text="{Binding Description}" FontSize="13.5" TextColor="{StaticResource OnSurfaceVariant}" />
+                                            <Grid ColumnDefinitions="*,Auto">
+                                                <Label Text="{Binding QuizCount}" FontFamily="InterMedium" FontSize="15.5" TextColor="{StaticResource PrimaryDark}" />
+                                                <c:Ico Grid.Column="1" Name="chevron-right" Size="18" TextColor="{StaticResource PrimaryDark}" />
+                                            </Grid>
+                                        </VerticalStackLayout>
+                                    </Border>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </HorizontalStackLayout>
+                    </ScrollView>
+                </VerticalStackLayout>
+
+                <!-- Fiches mémo récentes -->
+                <VerticalStackLayout Spacing="10">
+                    <Grid ColumnDefinitions="*,Auto">
+                        <Label Text="Fiches mémo récentes" Style="{StaticResource SectionTitle}" FontSize="18" />
+                        <Label Grid.Column="1" Text="Toutes" FontFamily="InterBold" FontSize="13.5" TextColor="{StaticResource PrimaryDark}" VerticalOptions="Center" h:Nav.To="memos" />
+                    </Grid>
+                    <Border Style="{StaticResource Card}" Padding="12" StrokeShape="RoundRectangle 16" h:Nav.To="memo">
+                        <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="14">
+                            <Border WidthRequest="54" HeightRequest="54" StrokeThickness="0" StrokeShape="RoundRectangle 14" BackgroundColor="{StaticResource SecondaryContainer}">
+                                <c:Ico Name="clipboard-pulse-outline" Size="28" TextColor="{StaticResource PrimaryDark}" />
+                            </Border>
+                            <VerticalStackLayout Grid.Column="1" VerticalOptions="Center" Spacing="3">
+                                <Label Text="Signes d'un AVC (méthode FAST)" FontFamily="InterBold" FontSize="15" />
+                                <HorizontalStackLayout Spacing="6">
+                                    <c:Ico Name="clock-outline" Size="15" TextColor="{StaticResource OnSurfaceVariant}" />
+                                    <Label Text="Lecture 1 min" FontSize="14" TextColor="{StaticResource OnSurfaceVariant}" />
+                                    <Label Text="•" FontSize="14" />
+                                    <Label Text="Fiche vitale" FontFamily="InterMedium" FontSize="14" TextColor="{StaticResource Green}" />
+                                </HorizontalStackLayout>
+                            </VerticalStackLayout>
+                            <c:Ico Grid.Column="2" Name="arrow-right" Size="22" TextColor="#C9C3D6" />
+                        </Grid>
+                    </Border>
+                    <Border Style="{StaticResource Card}" Padding="12" StrokeShape="RoundRectangle 16" h:Nav.To="memo">
+                        <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="14">
+                            <Border WidthRequest="54" HeightRequest="54" StrokeThickness="0" StrokeShape="RoundRectangle 14" BackgroundColor="{StaticResource SecondaryContainer}">
+                                <c:Ico Name="human-handsup" Size="28" TextColor="{StaticResource PrimaryDark}" />
+                            </Border>
+                            <VerticalStackLayout Grid.Column="1" VerticalOptions="Center" Spacing="3">
+                                <Label Text="Position Latérale de Sécurité (PLS)" FontFamily="InterBold" FontSize="15" />
+                                <HorizontalStackLayout Spacing="6">
+                                    <c:Ico Name="clock-outline" Size="15" TextColor="{StaticResource OnSurfaceVariant}" />
+                                    <Label Text="Lecture 1 min" FontSize="14" TextColor="{StaticResource OnSurfaceVariant}" />
+                                    <Label Text="•" FontSize="14" />
+                                    <Label Text="Étape par étape" FontFamily="InterMedium" FontSize="14" TextColor="{StaticResource PrimaryDark}" />
+                                </HorizontalStackLayout>
+                            </VerticalStackLayout>
+                            <c:Ico Grid.Column="2" Name="arrow-right" Size="22" TextColor="#C9C3D6" />
+                        </Grid>
+                    </Border>
+                </VerticalStackLayout>
+
+                <!-- Bandeau urgence -->
+                <Border BackgroundColor="{StaticResource SurfaceContainer}" StrokeThickness="0" StrokeShape="RoundRectangle 22" Padding="16">
+                    <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="12">
+                        <Border WidthRequest="50" HeightRequest="50" StrokeThickness="0" StrokeShape="RoundRectangle 25" BackgroundColor="{StaticResource Error}">
+                            <c:Ico Name="alarm-light-outline" Size="26" TextColor="White" />
+                        </Border>
+                        <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
+                            <Label Text="Urgence vitale réelle ?" FontFamily="InterBold" FontSize="14" />
+                            <Label Text="Appelez immédiatement le SAMU" FontSize="13.5" TextColor="{StaticResource OnSurfaceVariant}" />
+                        </VerticalStackLayout>
+                        <Border Grid.Column="2" BackgroundColor="{StaticResource Error}" StrokeThickness="0" StrokeShape="RoundRectangle 14" Padding="14,12" VerticalOptions="Center">
+                            <HorizontalStackLayout Spacing="6">
+                                <c:Ico Name="phone" Size="18" TextColor="White" />
+                                <Label Text="15 / 112" FontFamily="InterBold" FontSize="15" TextColor="White" />
+                            </HorizontalStackLayout>
+                        </Border>
+                    </Grid>
+                </Border>
+
+                <HorizontalStackLayout Spacing="10" Margin="8,0">
+                    <c:Ico Name="information-outline" Size="18" TextColor="{StaticResource OnSurfaceVariant}" VerticalOptions="Start" />
+                    <Label Text="QuizSanté est un outil d'apprentissage ludique et préventif. Il ne remplace en aucun cas un avis médical professionnel ou une formation certifiée aux premiers secours (PSC1)."
+                           FontSize="13.5" TextColor="{StaticResource OnSurfaceVariant}" HorizontalTextAlignment="Center" WidthRequest="290" />
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <c:BottomNav Grid.Row="2" Active="home" />
+    </Grid>
+</ContentPage>

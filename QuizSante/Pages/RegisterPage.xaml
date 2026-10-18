@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:c="clr-namespace:QuizSante.Controls" xmlns:h="clr-namespace:QuizSante.Helpers" x:Class="QuizSante.Pages.RegisterPage">
+    <Grid RowDefinitions="Auto,*">
+        <c:BackHeader Title="Création De Compte" BackRoute="login" />
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Padding="22,16,22,28" Spacing="0">
+                <Image Source="logo.png" WidthRequest="130" HeightRequest="104" Aspect="AspectFit" HorizontalOptions="Center" />
+
+                <Border Style="{StaticResource Chip}" BackgroundColor="{StaticResource PrimaryContainer}"
+                        HorizontalOptions="Center" Margin="0,6,0,12" Padding="12,6">
+                    <HorizontalStackLayout Spacing="6">
+                        <c:Ico Name="shield-check-outline" Size="16" TextColor="{StaticResource PrimaryDark}" />
+                        <Label Text="Espace Prévention &amp; Premiers Secours" FontFamily="InterBold" FontSize="12.5" TextColor="{StaticResource PrimaryDark}" />
+                    </HorizontalStackLayout>
+                </Border>
+
+                <Label Text="Créer un compte" FontFamily="InterXBold" FontSize="28" HorizontalTextAlignment="Center" />
+                <Label Text="Sauvegardez vos progrès et synchronisez vos fiches d'urgence hors-ligne."
+                       FontSize="16" TextColor="{StaticResource OnSurfaceVariant}" HorizontalTextAlignment="Center" Margin="6,8,6,22" />
+
+                <Label FontFamily="InterBold" FontSize="14.5" Margin="0,0,0,8">
+                    <Label.FormattedText><FormattedString>
+                        <Span Text="Prénom ou pseudonyme " />
+                        <Span Text="*" TextColor="{StaticResource Error}" />
+                    </FormattedString></Label.FormattedText>
+                </Label>
+                <c:InputField Icon="account-outline" Placeholder="Ex. Camille ou Secouriste75" FieldColor="White" />
+
+                <Label FontFamily="InterBold" FontSize="14.5" Margin="0,18,0,8">
+                    <Label.FormattedText><FormattedString>
+                        <Span Text="Adresse email " />
+                        <Span Text="*" TextColor="{StaticResource Error}" />
+                    </FormattedString></Label.FormattedText>
+                </Label>
+                <c:InputField Icon="email-outline" Placeholder="nom@exemple.fr" FieldColor="White" KeyboardType="Email" />
+
+                <Label FontFamily="InterBold" FontSize="14.5" Margin="0,18,0,8">
+                    <Label.FormattedText><FormattedString>
+                        <Span Text="Mot de passe " />
+                        <Span Text="*" TextColor="{StaticResource Error}" />
+                    </FormattedString></Label.FormattedText>
+                </Label>
+                <c:InputField x:Name="PasswordField" Icon="lock-outline" Placeholder="8 caractères minimum" IsPassword="True"
+                              FieldColor="White" TextChanged="OnPasswordChanged" />
+
+                <Border BackgroundColor="{StaticResource SurfaceContainer}" StrokeThickness="0" StrokeShape="RoundRectangle 14"
+                        Padding="12,10" Margin="0,10,0,0">
+                    <VerticalStackLayout Spacing="8">
+                        <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="8">
+                            <c:Ico Name="shield-outline" Size="18" TextColor="{StaticResource OnSurfaceVariant}" />
+                            <Label Grid.Column="1" VerticalOptions="Center" FontSize="13.5">
+                                <Label.FormattedText><FormattedString>
+                                    <Span Text="Niveau de sécurité : " TextColor="{StaticResource OnSurfaceVariant}" />
+                                    <Span x:Name="StrengthText" Text="Correct" FontFamily="InterBold" TextColor="{StaticResource Green}" />
+                                </FormattedString></Label.FormattedText>
+                            </Label>
+                            <Label x:Name="StrengthPct" Grid.Column="2" Text="75%" FontFamily="InterBold" FontSize="13.5" TextColor="{StaticResource Green}" />
+                        </Grid>
+                        <c:Bar x:Name="StrengthBar" Progress="0.75" FillColor="{StaticResource Green}" TrackColor="{StaticResource SecondaryContainer}" HeightRequest="8" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Grid ColumnDefinitions="*,Auto" Margin="0,22,0,2">
+                    <Label Text="Tranche d'âge" FontFamily="InterBold" FontSize="16" />
+                    <Label Grid.Column="1" Text="Optionnel" FontSize="13.5" TextColor="{StaticResource Outline}" VerticalOptions="Center" />
+                </Grid>
+                <Label Text="Permet d'adapter nos protocoles de prévention et conseils pratiques." FontSize="13.5" TextColor="{StaticResource OnSurfaceVariant}" Margin="0,0,0,10" />
+
+                <Grid x:Name="AgeRow" ColumnDefinitions="*,*,*" ColumnSpacing="8">
+                    <Border x:Name="Age0" StrokeThickness="0" StrokeShape="RoundRectangle 14" HeightRequest="48" BackgroundColor="White">
+                        <Label Text="16 - 25 ans" FontFamily="InterBold" FontSize="14" HorizontalOptions="Center" VerticalOptions="Center" />
+                        <Border.GestureRecognizers><TapGestureRecognizer Tapped="OnAgeTapped" CommandParameter="0" /></Border.GestureRecognizers>
+                    </Border>
+                    <Border x:Name="Age1" Grid.Column="1" StrokeThickness="0" StrokeShape="RoundRectangle 14" HeightRequest="48" BackgroundColor="{StaticResource Primary}">
+                        <Label Text="26 - 50 ans" FontFamily="InterBold" FontSize="14" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" />
+                        <Border.GestureRecognizers><TapGestureRecognizer Tapped="OnAgeTapped" CommandParameter="1" /></Border.GestureRecognizers>
+                    </Border>
+                    <Border x:Name="Age2" Grid.Column="2" StrokeThickness="0" StrokeShape="RoundRectangle 14" HeightRequest="48" BackgroundColor="White">
+                        <Label Text="50+ ans" FontFamily="InterBold" FontSize="14" HorizontalOptions="Center" VerticalOptions="Center" />
+                        <Border.GestureRecognizers><TapGestureRecognizer Tapped="OnAgeTapped" CommandParameter="2" /></Border.GestureRecognizers>
+                    </Border>
+                </Grid>
+
+                <Border BackgroundColor="{StaticResource SurfaceContainer}" StrokeThickness="0" StrokeShape="RoundRectangle 16"
+                        Padding="12,14" Margin="0,18,0,0">
+                    <Grid ColumnDefinitions="Auto,*" ColumnSpacing="12">
+                        <Border x:Name="ConsentBox" WidthRequest="28" HeightRequest="28" StrokeThickness="0" StrokeShape="RoundRectangle 8"
+                                BackgroundColor="{StaticResource Primary}" VerticalOptions="Start">
+                            <c:Ico x:Name="ConsentTick" Name="check" Size="18" TextColor="White" />
+                            <Border.GestureRecognizers><TapGestureRecognizer Tapped="OnConsentTapped" /></Border.GestureRecognizers>
+                        </Border>
+                        <VerticalStackLayout Grid.Column="1" Spacing="6">
+                            <Label FontSize="14.5">
+                                <Label.FormattedText><FormattedString>
+                                    <Span Text="J'accepte les " />
+                                    <Span Text="Conditions Générales" TextDecorations="Underline" TextColor="{StaticResource PrimaryDark}" />
+                                    <Span Text=" et la politique de confidentialité." />
+                                </FormattedString></Label.FormattedText>
+                            </Label>
+                            <HorizontalStackLayout Spacing="6">
+                                <c:Ico Name="lock-outline" Size="16" TextColor="{StaticResource Green}" VerticalOptions="Start" />
+                                <Label Text="Vos données de santé restent strictement privées" FontFamily="InterBold" FontSize="13.5" TextColor="{StaticResource Green}" />
+                            </HorizontalStackLayout>
+                        </VerticalStackLayout>
+                    </Grid>
+                </Border>
+
+                <Border Style="{StaticResource PrimaryButton}" Margin="0,22,0,0" h:Nav.To="home">
+                    <HorizontalStackLayout Spacing="8" HorizontalOptions="Center" VerticalOptions="Center">
+                        <Label Text="Créer mon compte" FontFamily="InterBold" FontSize="17" TextColor="White" />
+                        <c:Ico Name="arrow-right" Size="20" TextColor="White" />
+                    </HorizontalStackLayout>
+                </Border>
+
+                <Grid ColumnDefinitions="*,Auto,*" ColumnSpacing="14" Margin="0,22,0,16">
+                    <BoxView HeightRequest="1" Color="{StaticResource SecondaryContainer}" VerticalOptions="Center" />
+                    <Label Grid.Column="1" Text="OU CONTINUER AVEC" FontFamily="InterMedium" FontSize="12.5" TextColor="{StaticResource Outline}" CharacterSpacing="0.8" />
+                    <BoxView Grid.Column="2" HeightRequest="1" Color="{StaticResource SecondaryContainer}" VerticalOptions="Center" />
+                </Grid>
+
+                <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                    <Border Style="{StaticResource SoftButton}" BackgroundColor="White">
+                        <Border.Shadow><Shadow Brush="#0B1C30" Opacity="0.06" Radius="8" Offset="0,3" /></Border.Shadow>
+                        <HorizontalStackLayout Spacing="10" HorizontalOptions="Center" VerticalOptions="Center">
+                            <Image Source="google.png" WidthRequest="20" HeightRequest="20" />
+                            <Label Text="Google" FontFamily="InterBold" FontSize="15" />
+                        </HorizontalStackLayout>
+                    </Border>
+                    <Border Grid.Column="1" Style="{StaticResource SoftButton}" BackgroundColor="White">
+                        <Border.Shadow><Shadow Brush="#0B1C30" Opacity="0.06" Radius="8" Offset="0,3" /></Border.Shadow>
+                        <HorizontalStackLayout Spacing="10" HorizontalOptions="Center" VerticalOptions="Center">
+                            <c:Ico Name="apple" Size="22" TextColor="Black" />
+                            <Label Text="Apple" FontFamily="InterBold" FontSize="15" />
+                        </HorizontalStackLayout>
+                    </Border>
+                </Grid>
+
+                <HorizontalStackLayout HorizontalOptions="Center" Spacing="6" Margin="0,24,0,0" h:Nav.To="login">
+                    <Label Text="Déjà un compte ?" FontSize="15" TextColor="{StaticResource OnSurfaceVariant}" />
+                    <Label Text="Se connecter" FontFamily="InterBold" FontSize="15" TextColor="{StaticResource PrimaryDark}" />
+                </HorizontalStackLayout>
+
+                <Border BackgroundColor="#E4EBFC" StrokeThickness="0" StrokeShape="RoundRectangle 14" Padding="14,12" Margin="0,22,0,0">
+                    <Grid ColumnDefinitions="Auto,*" ColumnSpacing="12">
+                        <c:Ico Name="wifi-off" Size="22" TextColor="{StaticResource OnSurfaceVariant}" />
+                        <Label Grid.Column="1" Text="Accès sans compte possible • Vos données restent sur cet appareil"
+                               FontSize="13.5" TextColor="{StaticResource OnSurfaceVariant}" HorizontalTextAlignment="Center" />
+                    </Grid>
+                </Border>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>

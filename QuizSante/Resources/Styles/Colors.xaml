@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?xaml-comp compile="true" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <!-- Palette extraite des maquettes QuizSanté -->
+    <Color x:Key="Primary">#4F2E98</Color>
+    <Color x:Key="PrimaryDark">#380F81</Color>
+    <Color x:Key="PrimaryMid">#543396</Color>
+    <Color x:Key="OnPrimaryContainer">#23005C</Color>
+    <Color x:Key="PrimaryContainer">#E9DDFF</Color>
+    <Color x:Key="PrimarySoft">#8F73C4</Color>
+
+    <Color x:Key="Surface">#F8F9FF</Color>
+    <Color x:Key="SurfaceContainer">#EFF4FF</Color>
+    <Color x:Key="SecondaryContainer">#DCE9FF</Color>
+    <Color x:Key="TrackBlue">#D3E4FE</Color>
+    <Color x:Key="White">#FFFFFF</Color>
+
+    <Color x:Key="OnSurface">#0B1C30</Color>
+    <Color x:Key="OnSurfaceVariant">#4A4455</Color>
+    <Color x:Key="Outline">#7B7487</Color>
+    <Color x:Key="Indigo">#3B55C9</Color>
+    <Color x:Key="BarBlue">#708CFD</Color>
+
+    <Color x:Key="Error">#BA1A1A</Color>
+    <Color x:Key="ErrorContainer">#FFDAD6</Color>
+    <Color x:Key="ErrorSoft">#FFE8E6</Color>
+    <Color x:Key="OnError">#93000A</Color>
+
+    <Color x:Key="Green">#00531F</Color>
+    <Color x:Key="GreenText">#006E2C</Color>
+    <Color x:Key="GreenContainer">#DEFCE4</Color>
+    <Color x:Key="Mint">#8FF7A2</Color>
+    <Color x:Key="OnMint">#00210A</Color>
+    <Color x:Key="Orange">#F97316</Color>
+    <Color x:Key="OrangeSoft">#FFEDD5</Color>
+    <Color x:Key="Amber">#F59E0B</Color>
+    <Color x:Key="Gold">#FDF1C4</Color>
+
+    <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource Primary}" />
+    <SolidColorBrush x:Key="WhiteBrush" Color="{StaticResource White}" />
+
+    <LinearGradientBrush x:Key="QuizDayGradient" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="#5B3BA0" Offset="0.0" />
+        <GradientStop Color="#380F81" Offset="1.0" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="HeroGradient" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="#EFF4FF" Offset="0.0" />
+        <GradientStop Color="#E6E8FF" Offset="1.0" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="XpGradient" StartPoint="0,0" EndPoint="1,0">
+        <GradientStop Color="#4F2E98" Offset="0.0" />
+        <GradientStop Color="#6C7FFF" Offset="1.0" />
+    </LinearGradientBrush>
+</ResourceDictionary>

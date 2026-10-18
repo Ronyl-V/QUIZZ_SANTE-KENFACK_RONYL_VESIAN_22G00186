@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:c="clr-namespace:QuizSante.Controls" xmlns:h="clr-namespace:QuizSante.Helpers" x:Class="QuizSante.Pages.AnswerPage">
+    <Grid RowDefinitions="Auto,*,Auto">
+        <c:SessionHeader Title="Session Quiz" Initials="DR" BackRoute="quiz" SolidAvatar="True" />
+
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Padding="16,12,16,16" Spacing="14">
+
+                <!-- Progression segmentée 3/8 -->
+                <Grid ColumnDefinitions="*,*,*,*,*,*,*,*" ColumnSpacing="8" HeightRequest="8">
+                    <BoxView Color="{StaticResource PrimarySoft}" CornerRadius="4" />
+                    <BoxView Grid.Column="1" Color="{StaticResource PrimarySoft}" CornerRadius="4" />
+                    <BoxView Grid.Column="2" Color="{StaticResource PrimarySoft}" CornerRadius="4" />
+                    <BoxView Grid.Column="3" Color="{StaticResource SecondaryContainer}" CornerRadius="4" />
+                    <BoxView Grid.Column="4" Color="{StaticResource SecondaryContainer}" CornerRadius="4" />
+                    <BoxView Grid.Column="5" Color="{StaticResource SecondaryContainer}" CornerRadius="4" />
+                    <BoxView Grid.Column="6" Color="{StaticResource SecondaryContainer}" CornerRadius="4" />
+                    <BoxView Grid.Column="7" Color="{StaticResource SecondaryContainer}" CornerRadius="4" />
+                </Grid>
+
+                <!-- Rappel de la question (estompé) -->
+                <Border Style="{StaticResource Card}" Padding="16" StrokeShape="RoundRectangle 20" Opacity="0.7">
+                    <VerticalStackLayout Spacing="8">
+                        <Grid ColumnDefinitions="*,Auto">
+                            <Label Text="ARRÊT CARDIORESPIRATOIRE" FontFamily="InterBold" FontSize="13" TextColor="{StaticResource Indigo}" CharacterSpacing="0.5" VerticalOptions="Center" />
+                            <Border Grid.Column="1" Style="{StaticResource Chip}" BackgroundColor="{StaticResource SecondaryContainer}" Padding="9,5">
+                                <HorizontalStackLayout Spacing="5">
+                                    <c:Ico Name="clock-outline" Size="15" TextColor="{StaticResource OnSurfaceVariant}" />
+                                    <Label Text="Question 3/8" FontFamily="InterSemi" FontSize="12.5" TextColor="{StaticResource OnSurfaceVariant}" />
+                                </HorizontalStackLayout>
+                            </Border>
+                        </Grid>
+                        <Label Text="Une personne s'effondre brutalement devant vous et ne respire plus du tout..." FontFamily="InterBold" FontSize="17" TextColor="{StaticResource OnSurfaceVariant}" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Réponse choisie -->
+                <Border BackgroundColor="#E1F4EA" StrokeThickness="0" StrokeShape="RoundRectangle 16" Padding="12" Opacity="0.85">
+                    <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="12">
+                        <Border WidthRequest="36" HeightRequest="36" StrokeThickness="0" StrokeShape="RoundRectangle 18" BackgroundColor="#5E7A6B" VerticalOptions="Center">
+                            <Label Text="B" FontFamily="InterBold" FontSize="15" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" />
+                        </Border>
+                        <Label Grid.Column="1" Text="Alerter les secours et débuter le massage" FontSize="14" TextColor="#4B6355" VerticalOptions="Center" />
+                        <Border Grid.Column="2" Style="{StaticResource Chip}" BackgroundColor="#5E7A6B" Padding="10,6" VerticalOptions="Center">
+                            <HorizontalStackLayout Spacing="5">
+                                <c:Ico Name="check" Size="15" TextColor="White" />
+                                <Label Text="Bonne réponse" FontFamily="InterBold" FontSize="13" TextColor="White" />
+                            </HorizontalStackLayout>
+                        </Border>
+                    </Grid>
+                </Border>
+
+                <!-- Explication -->
+                <Border Style="{StaticResource Card}" Padding="18" StrokeShape="RoundRectangle 26">
+                    <VerticalStackLayout Spacing="16">
+                        <Grid ColumnDefinitions="Auto,*" ColumnSpacing="14">
+                            <Border WidthRequest="56" HeightRequest="56" StrokeThickness="0" StrokeShape="RoundRectangle 16" BackgroundColor="{StaticResource Mint}">
+                                <c:Ico Name="medical-bag" Size="30" TextColor="{StaticResource OnMint}" />
+                            </Border>
+                            <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
+                                <Label FontFamily="InterXBold" FontSize="22">
+                                    <Label.FormattedText><FormattedString>
+                                        <Span Text="Excellente réaction ! " />
+                                        <Span Text="🎉" />
+                                    </FormattedString></Label.FormattedText>
+                                </Label>
+                                <Label Text="Protocole d'urgence vitale maîtrisé" FontSize="14" TextColor="{StaticResource OnSurfaceVariant}" />
+                            </VerticalStackLayout>
+                        </Grid>
+
+                        <Border StrokeThickness="0" StrokeShape="RoundRectangle 18" HeightRequest="176">
+                            <Grid>
+                                <Image Source="cpr_hero.png" Aspect="AspectFill" />
+                                <Border BackgroundColor="{StaticResource PrimaryMid}" StrokeThickness="0" StrokeShape="RoundRectangle 99" Padding="12,8"
+                                        HorizontalOptions="Start" VerticalOptions="End" Margin="12">
+                                    <HorizontalStackLayout Spacing="6">
+                                        <c:Ico Name="pulse" Size="17" TextColor="White" />
+                                        <Label Text="Rythme optimal : 100-120 bpm" FontFamily="InterBold" FontSize="13" TextColor="White" />
+                                    </HorizontalStackLayout>
+                                </Border>
+                            </Grid>
+                        </Border>
+
+                        <Label Text="POURQUOI CE RÉFLEXE SAUVE :" FontFamily="InterBold" FontSize="13" TextColor="{StaticResource OnSurfaceVariant}" CharacterSpacing="0.6" />
+
+                        <VerticalStackLayout Spacing="10">
+                            <Border BackgroundColor="{StaticResource SurfaceContainer}" StrokeThickness="0" StrokeShape="RoundRectangle 14" Padding="12">
+                                <Grid ColumnDefinitions="Auto,*" ColumnSpacing="12">
+                                    <Border WidthRequest="30" HeightRequest="30" StrokeThickness="0" StrokeShape="RoundRectangle 15" BackgroundColor="{StaticResource Primary}" VerticalOptions="Start">
+                                        <Label Text="1" FontFamily="InterBold" FontSize="14" TextColor="{StaticResource PrimaryContainer}" HorizontalOptions="Center" VerticalOptions="Center" />
+                                    </Border>
+                                    <Label Grid.Column="1" Text="Chaque minute sans oxygène réduit les chances de survie de 10%." FontSize="15.5" />
+                                </Grid>
+                            </Border>
+                            <Border BackgroundColor="{StaticResource SurfaceContainer}" StrokeThickness="0" StrokeShape="RoundRectangle 14" Padding="12">
+                                <Grid ColumnDefinitions="Auto,*" ColumnSpacing="12">
+                                    <Border WidthRequest="30" HeightRequest="30" StrokeThickness="0" StrokeShape="RoundRectangle 15" BackgroundColor="{StaticResource Primary}" VerticalOptions="Start">
+                                        <Label Text="2" FontFamily="InterBold" FontSize="14" TextColor="{StaticResource PrimaryContainer}" HorizontalOptions="Center" VerticalOptions="Center" />
+                                    </Border>
+                                    <Label Grid.Column="1" Text="Appeler le 15 ou le 112 permet d'activer la chaîne des secours immédiatement." FontSize="15.5" />
+                                </Grid>
+                            </Border>
+                            <Border BackgroundColor="{StaticResource SurfaceContainer}" StrokeThickness="0" StrokeShape="RoundRectangle 14" Padding="12">
+                                <Grid ColumnDefinitions="Auto,*" ColumnSpacing="12">
+                                    <Border WidthRequest="30" HeightRequest="30" StrokeThickness="0" StrokeShape="RoundRectangle 15" BackgroundColor="{StaticResource Primary}" VerticalOptions="Start">
+                                        <Label Text="3" FontFamily="InterBold" FontSize="14" TextColor="{StaticResource PrimaryContainer}" HorizontalOptions="Center" VerticalOptions="Center" />
+                                    </Border>
+                                    <Label Grid.Column="1" Text="Le massage cardiaque maintient le sang irrigué vers le cerveau." FontSize="15.5" />
+                                </Grid>
+                            </Border>
+                        </VerticalStackLayout>
+
+                        <Border BackgroundColor="{StaticResource SecondaryContainer}" StrokeThickness="0" StrokeShape="RoundRectangle 16" Padding="16,14">
+                            <VerticalStackLayout Spacing="8">
+                                <HorizontalStackLayout Spacing="8">
+                                    <c:Ico Name="check-decagram" Size="20" TextColor="{StaticResource Indigo}" />
+                                    <Label Text="À retenir absolument" FontFamily="InterBold" FontSize="16" TextColor="{StaticResource Indigo}" />
+                                </HorizontalStackLayout>
+                                <Label Text="Alerter sans délai, masser sans interruption jusqu'à l'arrivée des secours." FontSize="15.5" />
+                            </VerticalStackLayout>
+                        </Border>
+
+                        <Border BackgroundColor="{StaticResource ErrorSoft}" StrokeThickness="0" StrokeShape="RoundRectangle 16" Padding="16,14">
+                            <VerticalStackLayout Spacing="8">
+                                <HorizontalStackLayout Spacing="8">
+                                    <c:Ico Name="alert-outline" Size="20" TextColor="{StaticResource Error}" />
+                                    <Label Text="Erreur fréquente à éviter" FontFamily="InterBold" FontSize="16" TextColor="{StaticResource Error}" />
+                                </HorizontalStackLayout>
+                                <Label Text="Ne jamais donner à boire ou perdre du temps à chercher des médicaments." FontSize="15.5" TextColor="{StaticResource OnError}" />
+                            </VerticalStackLayout>
+                        </Border>
+
+                        <Border BackgroundColor="{StaticResource SecondaryContainer}" StrokeThickness="0" StrokeShape="RoundRectangle 16" Padding="10" h:Nav.To="memo">
+                            <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="12">
+                                <Border WidthRequest="52" HeightRequest="52" StrokeThickness="0" StrokeShape="RoundRectangle 14" BackgroundColor="{StaticResource PrimaryContainer}">
+                                    <c:Ico Name="book-open-page-variant-outline" Size="26" TextColor="{StaticResource PrimaryDark}" />
+                                </Border>
+                                <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
+                                    <Label Text="Fiche mémo complète" FontFamily="InterBold" FontSize="14.5" />
+                                    <Label Text="Massage cardiaque d'urgence" FontFamily="InterMedium" FontSize="14" TextColor="{StaticResource PrimaryDark}" />
+                                </VerticalStackLayout>
+                                <c:Ico Grid.Column="2" Name="arrow-right" Size="22" TextColor="{StaticResource PrimaryDark}" />
+                            </Grid>
+                        </Border>
+                    </VerticalStackLayout>
+                </Border>
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <Grid Grid.Row="2" ColumnDefinitions="Auto,*" ColumnSpacing="12" Padding="22,12,22,14" BackgroundColor="{StaticResource Surface}">
+            <Border WidthRequest="58" HeightRequest="58" StrokeThickness="0" StrokeShape="RoundRectangle 18" BackgroundColor="{StaticResource SecondaryContainer}">
+                <c:Ico Name="share-variant" Size="24" TextColor="{StaticResource OnSurface}" />
+            </Border>
+            <Border Grid.Column="1" Style="{StaticResource PrimaryButton}" HeightRequest="58" h:Nav.To="quiz">
+                <HorizontalStackLayout Spacing="8" HorizontalOptions="Center" VerticalOptions="Center">
+                    <Label Text="Question suivante (4/8)" FontFamily="InterBold" FontSize="17" TextColor="White" />
+                    <c:Ico Name="arrow-right" Size="20" TextColor="White" />
+                </HorizontalStackLayout>
+            </Border>
+        </Grid>
+    </Grid>
+</ContentPage>

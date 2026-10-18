@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:c="clr-namespace:QuizSante.Controls" xmlns:h="clr-namespace:QuizSante.Helpers" x:Class="QuizSante.Pages.MemoDetailPage">
+    <Grid RowDefinitions="Auto,*">
+        <c:SessionHeader Title="Fiche Détaillée" Initials="PS" BackRoute="memos" />
+
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Padding="16,12,16,28" Spacing="14">
+
+                <Border Style="{StaticResource Card}" Padding="12" StrokeShape="RoundRectangle 18">
+                    <Grid ColumnDefinitions="Auto,*,Auto,Auto" ColumnSpacing="10">
+                        <Image Source="logo.png" WidthRequest="50" HeightRequest="40" Aspect="AspectFit" />
+                        <Label Grid.Column="1" Text="FICHE RÉFLEXE" FontFamily="InterMedium" FontSize="16" TextColor="{StaticResource PrimaryDark}" CharacterSpacing="1" VerticalOptions="Center" />
+                        <Border Grid.Column="2" WidthRequest="46" HeightRequest="46" StrokeThickness="0" StrokeShape="RoundRectangle 23" BackgroundColor="{StaticResource SecondaryContainer}">
+                            <c:Ico Name="bookmark-plus-outline" Size="22" TextColor="{StaticResource PrimaryDark}" />
+                        </Border>
+                        <Border Grid.Column="3" Style="{StaticResource Chip}" BackgroundColor="{StaticResource PrimaryContainer}" Padding="12,11" VerticalOptions="Center">
+                            <HorizontalStackLayout Spacing="6">
+                                <c:Ico Name="format-size" Size="18" TextColor="{StaticResource OnPrimaryContainer}" />
+                                <Label Text="Mode Urgence" FontFamily="InterMedium" FontSize="15" TextColor="{StaticResource OnPrimaryContainer}" />
+                            </HorizontalStackLayout>
+                        </Border>
+                    </Grid>
+                </Border>
+
+                <FlexLayout Wrap="Wrap" Direction="Row">
+                    <Border Style="{StaticResource Chip}" BackgroundColor="{StaticResource SecondaryContainer}" Padding="12,8" Margin="0,0,10,10">
+                        <HorizontalStackLayout Spacing="6">
+                            <c:Ico Name="medical-bag" Size="17" TextColor="{StaticResource OnPrimaryContainer}" />
+                            <Label Text="Premiers secours" FontFamily="InterMedium" FontSize="15" TextColor="{StaticResource OnPrimaryContainer}" />
+                        </HorizontalStackLayout>
+                    </Border>
+                    <Border Style="{StaticResource Chip}" BackgroundColor="{StaticResource SecondaryContainer}" Padding="12,8" Margin="0,0,10,10">
+                        <HorizontalStackLayout Spacing="6">
+                            <c:Ico Name="clock-outline" Size="17" TextColor="{StaticResource OnPrimaryContainer}" />
+                            <Label Text="Lecture 2 min" FontFamily="InterMedium" FontSize="15" TextColor="{StaticResource OnPrimaryContainer}" />
+                        </HorizontalStackLayout>
+                    </Border>
+                    <Border Style="{StaticResource Chip}" BackgroundColor="{StaticResource Mint}" Padding="12,8" Margin="0,0,0,10">
+                        <HorizontalStackLayout Spacing="6">
+                            <c:Ico Name="cloud-check" Size="17" TextColor="{StaticResource OnMint}" />
+                            <Label Text="Hors-ligne" FontFamily="InterMedium" FontSize="15" TextColor="{StaticResource OnMint}" />
+                            <c:Ico Name="check" Size="16" TextColor="{StaticResource OnMint}" />
+                        </HorizontalStackLayout>
+                    </Border>
+                </FlexLayout>
+
+                <Border Style="{StaticResource Card}" Padding="18" StrokeShape="RoundRectangle 20">
+                    <Grid ColumnDefinitions="*,Auto" ColumnSpacing="12">
+                        <VerticalStackLayout Spacing="4">
+                            <Label Text="PROTOCOLE ADULTE" FontFamily="InterMedium" FontSize="16" TextColor="{StaticResource Indigo}" CharacterSpacing="0.8" />
+                            <Label Text="Massage cardiaque chez l'adulte" FontFamily="InterMedium" FontSize="16.5" TextColor="{StaticResource PrimaryDark}" />
+                            <Label Text="Gestes essentiels à accomplir lorsqu'une victime est inconsciente et ne respire plus normalement."
+                                   FontSize="16.5" TextColor="{StaticResource OnSurfaceVariant}" Margin="0,8,0,0" />
+                        </VerticalStackLayout>
+                        <Border Grid.Column="1" WidthRequest="52" HeightRequest="52" StrokeThickness="0" StrokeShape="RoundRectangle 14" BackgroundColor="{StaticResource PrimaryContainer}" VerticalOptions="Start">
+                            <c:Ico Name="heart-pulse" Size="28" TextColor="{StaticResource PrimaryDark}" />
+                        </Border>
+                    </Grid>
+                </Border>
+
+                <!-- Alerte immédiate -->
+                <Border BackgroundColor="{StaticResource ErrorContainer}" StrokeThickness="0" StrokeShape="RoundRectangle 20" Padding="16">
+                    <Border.Shadow><Shadow Brush="#BA1A1A" Opacity="0.15" Radius="12" Offset="0,5" /></Border.Shadow>
+                    <VerticalStackLayout Spacing="10">
+                        <HorizontalStackLayout Spacing="8">
+                            <c:Ico Name="alarm-light-outline" Size="22" TextColor="{StaticResource Error}" />
+                            <Label FontFamily="InterMedium" FontSize="17" TextColor="{StaticResource Error}">
+                                <Label.FormattedText><FormattedString>
+                                    <Span Text="🚨" />
+                                    <Span Text=" Alerte Immédiate" />
+                                </FormattedString></Label.FormattedText>
+                            </Label>
+                        </HorizontalStackLayout>
+                        <Label FontFamily="InterBold" FontSize="16.5" TextColor="{StaticResource OnError}">
+                            <Label.FormattedText><FormattedString>
+                                <Span Text="Composer sans délai le " />
+                                <Span Text="15" TextDecorations="Underline" />
+                                <Span Text=", le " />
+                                <Span Text="18" TextDecorations="Underline" />
+                                <Span Text=" ou le " />
+                                <Span Text="112" TextDecorations="Underline" />
+                                <Span Text=". Préciser le lieu exact et l'état de la victime." />
+                            </FormattedString></Label.FormattedText>
+                        </Label>
+                        <Border BackgroundColor="{StaticResource Error}" StrokeThickness="0" StrokeShape="RoundRectangle 14" HeightRequest="54" Margin="0,4,0,0">
+                            <Border.Shadow><Shadow Brush="#BA1A1A" Opacity="0.30" Radius="10" Offset="0,5" /></Border.Shadow>
+                            <HorizontalStackLayout Spacing="10" HorizontalOptions="Center" VerticalOptions="Center">
+                                <c:Ico Name="phone" Size="22" TextColor="White" />
+                                <Label Text="APPELER LES SECOURS (112)" FontFamily="InterMedium" FontSize="16" TextColor="White" />
+                            </HorizontalStackLayout>
+                        </Border>
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Rythme -->
+                <Border BackgroundColor="{StaticResource SecondaryContainer}" StrokeThickness="0" StrokeShape="RoundRectangle 18" Padding="14">
+                    <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="12">
+                        <Border WidthRequest="46" HeightRequest="46" StrokeThickness="0" StrokeShape="RoundRectangle 23" BackgroundColor="{StaticResource PrimaryDark}" VerticalOptions="Center">
+                            <c:Ico Name="heart-outline" Size="24" TextColor="White" />
+                        </Border>
+                        <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
+                            <Label Text="Rythme : 100 - 120 BPM" FontFamily="InterMedium" FontSize="16.5" />
+                            <Label Text="Tempo 'Stayin' Alive'" FontSize="15" TextColor="{StaticResource OnSurfaceVariant}" />
+                        </VerticalStackLayout>
+                        <Border Grid.Column="2" BackgroundColor="{StaticResource PrimaryDark}" StrokeThickness="0" StrokeShape="RoundRectangle 99" Padding="14,11" VerticalOptions="Center">
+                            <HorizontalStackLayout Spacing="6">
+                                <c:Ico Name="play-outline" Size="16" TextColor="White" />
+                                <Label Text="Bip tempo" FontFamily="InterMedium" FontSize="15" TextColor="White" />
+                            </HorizontalStackLayout>
+                        </Border>
+                    </Grid>
+                </Border>
+
+                <HorizontalStackLayout Spacing="10" Margin="2,6,0,0">
+                    <c:Ico Name="format-list-numbered" Size="22" TextColor="{StaticResource PrimaryDark}" />
+                    <Label Text="Les 4 étapes clés" FontFamily="InterMedium" FontSize="18" VerticalOptions="Center" />
+                </HorizontalStackLayout>
+
+                <Border Style="{StaticResource Card}" Padding="16" StrokeShape="RoundRectangle 18">
+                    <Grid ColumnDefinitions="Auto,*" ColumnSpacing="12">
+                        <Border WidthRequest="38" HeightRequest="38" StrokeThickness="0" StrokeShape="RoundRectangle 19" BackgroundColor="{StaticResource PrimaryContainer}" VerticalOptions="Start">
+                            <Label Text="1" FontFamily="InterMedium" FontSize="17" TextColor="{StaticResource OnPrimaryContainer}" HorizontalOptions="Center" VerticalOptions="Center" />
+                        </Border>
+                        <VerticalStackLayout Grid.Column="1" Spacing="6">
+                            <HorizontalStackLayout Spacing="8"><c:Ico Name="bed" Size="20" TextColor="{StaticResource PrimaryDark}" /><Label Text="Position du corps" FontFamily="InterMedium" FontSize="17" /></HorizontalStackLayout>
+                            <Label Text="Positionner la victime sur le dos sur un sol plat et rigide (ne pas masser sur un matelas)." FontSize="16.5" />
+                        </VerticalStackLayout>
+                    </Grid>
+                </Border>
+                <Border Style="{StaticResource Card}" Padding="16" StrokeShape="RoundRectangle 18">
+                    <Grid ColumnDefinitions="Auto,*" ColumnSpacing="12">
+                        <Border WidthRequest="38" HeightRequest="38" StrokeThickness="0" StrokeShape="RoundRectangle 19" BackgroundColor="{StaticResource PrimaryContainer}" VerticalOptions="Start">
+                            <Label Text="2" FontFamily="InterMedium" FontSize="17" TextColor="{StaticResource OnPrimaryContainer}" HorizontalOptions="Center" VerticalOptions="Center" />
+                        </Border>
+                        <VerticalStackLayout Grid.Column="1" Spacing="6">
+                            <HorizontalStackLayout Spacing="8"><c:Ico Name="hand-back-right-outline" Size="20" TextColor="{StaticResource PrimaryDark}" /><Label Text="Position des mains" FontFamily="InterMedium" FontSize="17" /></HorizontalStackLayout>
+                            <Label Text="Placer le talon d'une main au centre de la poitrine, entrecroiser les doigts de l'autre main par-dessus. Bras tendus verrouillés." FontSize="16.5" />
+                        </VerticalStackLayout>
+                    </Grid>
+                </Border>
+                <Border Style="{StaticResource Card}" Padding="16" StrokeShape="RoundRectangle 18">
+                    <Grid ColumnDefinitions="Auto,*" ColumnSpacing="12">
+                        <Border WidthRequest="38" HeightRequest="38" StrokeThickness="0" StrokeShape="RoundRectangle 19" BackgroundColor="{StaticResource PrimaryContainer}" VerticalOptions="Start">
+                            <Label Text="3" FontFamily="InterMedium" FontSize="17" TextColor="{StaticResource OnPrimaryContainer}" HorizontalOptions="Center" VerticalOptions="Center" />
+                        </Border>
+                        <VerticalStackLayout Grid.Column="1" Spacing="6">
+                            <HorizontalStackLayout Spacing="8"><c:Ico Name="unfold-less-horizontal" Size="20" TextColor="{StaticResource PrimaryDark}" /><Label Text="Compressions thoraciques" FontFamily="InterMedium" FontSize="17" /></HorizontalStackLayout>
+                            <Label FontSize="16.5">
+                                <Label.FormattedText><FormattedString>
+                                    <Span Text="Comprimer fermement la poitrine de " />
+                                    <Span Text="5 à 6 cm" FontFamily="InterBold" />
+                                    <Span Text=" à une cadence continue de " />
+                                    <Span Text="100 à 120 compressions" FontFamily="InterBold" />
+                                    <Span Text=" par minute. Relâcher complètement entre chaque appui." />
+                                </FormattedString></Label.FormattedText>
+                            </Label>
+                        </VerticalStackLayout>
+                    </Grid>
+                </Border>
+                <Border Style="{StaticResource Card}" Padding="16" StrokeShape="RoundRectangle 18">
+                    <Grid ColumnDefinitions="Auto,*" ColumnSpacing="12">
+                        <Border WidthRequest="38" HeightRequest="38" StrokeThickness="0" StrokeShape="RoundRectangle 19" BackgroundColor="{StaticResource PrimaryContainer}" VerticalOptions="Start">
+                            <Label Text="4" FontFamily="InterMedium" FontSize="17" TextColor="{StaticResource OnPrimaryContainer}" HorizontalOptions="Center" VerticalOptions="Center" />
+                        </Border>
+                        <VerticalStackLayout Grid.Column="1" Spacing="6">
+                            <HorizontalStackLayout Spacing="8"><c:Ico Name="clipboard-pulse-outline" Size="20" TextColor="{StaticResource PrimaryDark}" /><Label Text="Continuité du geste" FontFamily="InterMedium" FontSize="17" /></HorizontalStackLayout>
+                            <Label Text="Poursuivre sans arrêt jusqu'à l'arrivée du défibrillateur automatisé externe (DAE) ou la prise en charge par les secours spécialisés. Relayer un autre sauveteur si fatigue." FontSize="16.5" />
+                        </VerticalStackLayout>
+                    </Grid>
+                </Border>
+
+                <!-- Schéma anatomique -->
+                <Border StrokeThickness="0" StrokeShape="RoundRectangle 18" Margin="0,8,0,0" BackgroundColor="{StaticResource SecondaryContainer}">
+                    <Border.Shadow><Shadow Brush="#0B1C30" Opacity="0.08" Radius="10" Offset="0,4" /></Border.Shadow>
+                    <VerticalStackLayout Spacing="0">
+                        <Image Source="anatomy.png" Aspect="AspectFill" HeightRequest="190" />
+                        <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="8" Padding="14,14">
+                            <c:Ico Name="information-outline" Size="17" TextColor="{StaticResource PrimaryDark}" VerticalOptions="Start" />
+                            <Label Grid.Column="1" Text="Zone d'appui : bas du sternum" FontSize="16" TextColor="{StaticResource OnSurfaceVariant}" />
+                            <Label Grid.Column="2" Text="Repère sternal" FontFamily="InterBold" FontSize="16" TextColor="{StaticResource PrimaryDark}" WidthRequest="80" />
+                        </Grid>
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- À ne pas faire -->
+                <Border BackgroundColor="{StaticResource ErrorContainer}" StrokeThickness="0" StrokeShape="RoundRectangle 18" Padding="16">
+                    <VerticalStackLayout Spacing="10">
+                        <HorizontalStackLayout Spacing="8">
+                            <c:Ico Name="close-circle" Size="22" TextColor="{StaticResource Error}" />
+                            <Label Text="À ne pas faire" FontFamily="InterMedium" FontSize="17" TextColor="{StaticResource Error}" />
+                        </HorizontalStackLayout>
+                        <Label FontSize="16.5" TextColor="{StaticResource OnError}">
+                            <Label.FormattedText><FormattedString>
+                                <Span Text="•  " TextColor="{StaticResource Error}" />
+                                <Span Text="Ne pas interrompre" FontFamily="InterBold" />
+                                <Span Text=" le massage plus de 10 secondes." />
+                            </FormattedString></Label.FormattedText>
+                        </Label>
+                        <Label FontSize="16.5" TextColor="{StaticResource OnError}">
+                            <Label.FormattedText><FormattedString>
+                                <Span Text="•  " TextColor="{StaticResource Error}" />
+                                <Span Text="Ne pas appuyer sur les côtes" FontFamily="InterBold" />
+                                <Span Text=" ni sur l'estomac, uniquement sur le sternum." />
+                            </FormattedString></Label.FormattedText>
+                        </Label>
+                        <Label FontSize="16.5" TextColor="{StaticResource OnError}">
+                            <Label.FormattedText><FormattedString>
+                                <Span Text="•  " TextColor="{StaticResource Error}" />
+                                <Span Text="Ne pas plier les coudes lors des pressions." />
+                            </FormattedString></Label.FormattedText>
+                        </Label>
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- Signes d'alerte -->
+                <Border BackgroundColor="{StaticResource SecondaryContainer}" StrokeThickness="0" StrokeShape="RoundRectangle 18" Padding="14">
+                    <VerticalStackLayout Spacing="10">
+                        <HorizontalStackLayout Spacing="8" Margin="2,0,0,2">
+                            <c:Ico Name="eye" Size="22" TextColor="{StaticResource Indigo}" />
+                            <Label Text="Signes d'alerte immédiats" FontFamily="InterMedium" FontSize="17" TextColor="{StaticResource Indigo}" />
+                        </HorizontalStackLayout>
+                        <Border BackgroundColor="White" StrokeThickness="0" StrokeShape="RoundRectangle 12" Padding="12,12">
+                            <Grid ColumnDefinitions="Auto,*" ColumnSpacing="12">
+                                <c:Ico Name="account-off-outline" Size="20" TextColor="{StaticResource Indigo}" VerticalOptions="Start" />
+                                <Label Grid.Column="1" Text="Absence totale de réaction (inconscience)." FontSize="16.5" />
+                            </Grid>
+                        </Border>
+                        <Border BackgroundColor="White" StrokeThickness="0" StrokeShape="RoundRectangle 12" Padding="12,12">
+                            <Grid ColumnDefinitions="Auto,*" ColumnSpacing="12">
+                                <c:Ico Name="weather-windy" Size="20" TextColor="{StaticResource Indigo}" VerticalOptions="Start" />
+                                <Label Grid.Column="1" Text="Absence ou anomalie respiratoire (gasps/râles)." FontSize="16.5" />
+                            </Grid>
+                        </Border>
+                    </VerticalStackLayout>
+                </Border>
+
+                <Label Text="Ce contenu éducatif ne remplace pas une formation certifiante aux premiers secours (PSC1 / SST)."
+                       FontSize="16" TextColor="{StaticResource OnSurfaceVariant}" HorizontalTextAlignment="Center" Margin="14,18,14,0" />
+                <HorizontalStackLayout HorizontalOptions="Center" Spacing="8">
+                    <c:Ico Name="check-decagram-outline" Size="19" TextColor="{StaticResource PrimaryDark}" />
+                    <Label Text="Recommandations ERC &amp; Croix-Rouge" FontFamily="InterMedium" FontSize="16" TextColor="{StaticResource PrimaryDark}" />
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>
